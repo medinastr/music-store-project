@@ -1,12 +1,21 @@
 package musicstore.bluevelvetmusicstore;
 
-public class Product {
+public class CreateProduct {
     private String productName;
     private String description;
     private String brand;
     private String category;
     private double listPrice;
     private double cost;
+
+    public CreateProduct(String productName, String description, String brand, String category, double listPrice, double cost) {
+        setProductName(productName);
+        setDescription(description);
+        setBrand(brand);
+        setCategory(category);
+        setListPrice(listPrice);
+        setCost(cost);
+    }
 
     public String getProductName() {
         return productName;
@@ -54,5 +63,15 @@ public class Product {
 
     public void setCost(double cost) {
         this.cost = cost;
+    }
+
+    public String productDetails() {
+        String aux = "Product: " + productName +
+                "\nDescription: " + description +
+                "\nBrand: " + brand +
+                "\nCategory: " + category +
+                "\nList price: " + listPrice +
+                "\nCost: " + cost;
+        return aux;
     }
 }
