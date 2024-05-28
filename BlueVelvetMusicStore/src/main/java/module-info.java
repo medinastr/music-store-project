@@ -10,6 +10,7 @@ module musicstore.bluevelvetmusicstore {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires java.sql;
 
     opens musicstore.bluevelvetmusicstore to javafx.fxml;
     exports musicstore.bluevelvetmusicstore;
