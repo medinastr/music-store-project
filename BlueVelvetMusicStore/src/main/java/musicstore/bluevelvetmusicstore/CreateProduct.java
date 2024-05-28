@@ -1,77 +1,49 @@
 package musicstore.bluevelvetmusicstore;
 
-public class CreateProduct {
-    private String productName;
-    private String description;
-    private String brand;
-    private String category;
-    private double listPrice;
-    private double cost;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class CreateProduct extends Product{
 
     public CreateProduct(String productName, String description, String brand, String category, double listPrice, double cost) {
-        setProductName(productName);
-        setDescription(description);
-        setBrand(brand);
-        setCategory(category);
-        setListPrice(listPrice);
-        setCost(cost);
+        super(productName, description, brand, category, listPrice, cost);
     }
 
-    public String getProductName() {
-        return productName;
-    }
+    public void addProduct(Product product) throws SQLException {
+        // Obtém a conexão com o banco de dados
+        Connection connection = DatabaseConnection.getConnection();
 
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
+        // Declaração SQL para inserir um novo produto na tabela do banco de dados
+        String sql = "INSERT INTO PRODUCTS (productName, description, brand, category, listPrice, cost) " +
+                "VALUES " + product.productDetails();
 
-    public String getDescription() {
-        return description;
-    }
+        // Prepara a declaração SQL para inserção
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            // Define os parâmetros da declaração SQL com base nas informações do produto
+            statement.setString(1, product.getProductName());
+            statement.setString(2, product.getDescription());
+            statement.setString(3, product.getBrand());
+            statement.setString(4, product.getCategory());
+            statement.setDouble(5, product.getListPrice());
+            statement.setDouble(6, product.getCost());
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+            // Executa a declaração SQL para inserir o produto no banco de dados
+            int rowsAffected = statement.executeUpdate();
 
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public double getListPrice() {
-        return listPrice;
-    }
-
-    public void setListPrice(double listPrice) {
-        this.listPrice = listPrice;
-    }
-
-    public double getCost() {
-        return cost;
-    }
-
-    public void setCost(double cost) {
-        this.cost = cost;
-    }
-
-    public String productDetails() {
-        String aux = "Product: " + productName +
-                "\nDescription: " + description +
-                "\nBrand: " + brand +
-                "\nCategory: " + category +
-                "\nList price: " + listPrice +
-                "\nCost: " + cost;
-        return aux;
+            // Verifica se a inserção foi bem-sucedida
+            if (rowsAffected > 0) {
+                System.out.println("Produto adicionado com sucesso ao banco de dados.");
+            } else {
+                System.out.println("Falha ao adicionar o produto ao banco de dados.");
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao adicionar o produto ao banco de dados: " + e.getMessage());
+        } finally {
+            // Fecha a conexão com o banco de dados
+            if (connection != null) {
+                connection.close();
+            }
+        }
     }
 }
