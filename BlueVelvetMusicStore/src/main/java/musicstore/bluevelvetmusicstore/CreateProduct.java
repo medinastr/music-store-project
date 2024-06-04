@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class CreateProduct extends Product{
+public class CreateProduct extends Product {
 
     public CreateProduct(String productName, String description, String brand, String category, double listPrice, double cost) {
         super(productName, description, brand, category, listPrice, cost);

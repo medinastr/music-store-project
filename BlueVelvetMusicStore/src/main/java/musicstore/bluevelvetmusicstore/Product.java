@@ -1,5 +1,7 @@
 package musicstore.bluevelvetmusicstore;
 
+import java.sql.SQLException;
+
 public class Product {
     private String productName;
     private String description;
