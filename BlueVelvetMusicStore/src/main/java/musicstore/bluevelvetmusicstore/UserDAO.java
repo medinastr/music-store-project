@@ -24,9 +24,9 @@ public class UserDAO {
             int rowsAffected = ps.executeUpdate();
 
             if (rowsAffected > 0) {
-                System.out.println("Produto adicionado com sucesso ao banco de dados.");
+                System.out.println("Product added successfully to the database.");
             } else {
-                System.out.println("Falha ao adicionar o produto ao banco de dados.");
+                System.out.println("Failed to add the product to the database.");
             }
 
         } catch (SQLException e) {
@@ -54,9 +54,38 @@ public class UserDAO {
             int rowsAffected = ps.executeUpdate();
 
             if (rowsAffected > 0) {
-                System.out.println("Produto removido com sucesso do banco de dados.");
+                System.out.println("Product deleted successfully.");
             } else {
-                System.out.println("Falha ao remover o produto do banco de dados.");
+                System.out.println("No product found with the given name.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (ps != null) {
+                ps.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+    }
+
+    public void updateProduct(Product product) throws SQLException {
+        String sql = "UPDATE PRODUCTS SET ? = ? WHERE productName = ?";
+
+        Connection connection = DatabaseConnection.getConnection();
+        PreparedStatement ps = null;
+
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, product.getProductName());
+
+            int rowsAffected = ps.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Product updated successfully.");
+            } else {
+                System.out.println("No product found with the given name.");
             }
         } catch (SQLException e) {
             e.printStackTrace();

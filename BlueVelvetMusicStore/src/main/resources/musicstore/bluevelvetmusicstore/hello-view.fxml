@@ -1,16 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="musicstore.bluevelvetmusicstore.HelloController">
-  <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-  </padding>
 
-  <Label fx:id="welcomeText"/>
-  <Button text="Hello" onAction="#onHelloButtonClick"/>
-</VBox>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="713.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox layoutX="14.0" layoutY="23.0" prefHeight="180.0" prefWidth="82.0" spacing="15.0">
+         <children>
+            <Label text="Name" />
+            <Label text="Description" />
+            <Label text="Brand" />
+            <Label text="Category" />
+            <Label text="List price" />
+            <Label lineSpacing="1.0" text="Cost" />
+         </children>
+      </VBox>
+      <VBox layoutX="96.0" layoutY="23.0" prefHeight="174.0" prefWidth="185.0" spacing="6.0">
+         <children>
+            <TextField fx:id="tfproductName" />
+            <TextField fx:id="tfdescription" />
+            <TextField fx:id="tfbrand" />
+            <TextField fx:id="tfcategory" />
+            <TextField fx:id="tflistPrice" />
+            <TextField fx:id="tfcost" />
+         </children>
+      </VBox>
+      <TableView fx:id="tablesviewBooks" layoutX="287.0" layoutY="23.0" prefHeight="258.0" prefWidth="418.0">
+        <columns>
+          <TableColumn fx:id="colName" prefWidth="62.0" text="Name" />
+          <TableColumn fx:id="colDescription" prefWidth="98.0" text="Description" />
+            <TableColumn fx:id="colBrand" prefWidth="61.0" text="Brand" />
+            <TableColumn fx:id="colCategory" prefWidth="71.0" text="Category" />
+            <TableColumn fx:id="colListPrice" prefWidth="73.0" text="List price" />
+            <TableColumn fx:id="colCost" prefWidth="55.0" text="Cost" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnInsert" layoutX="34.0" layoutY="257.0" mnemonicParsing="false" text="Create" />
+      <Button fx:id="btnUpdate" layoutX="112.0" layoutY="257.0" mnemonicParsing="false" text="Update" />
+      <Button fx:id="btnDelete" layoutX="196.0" layoutY="257.0" mnemonicParsing="false" text="Delete" />
+   </children>
+</AnchorPane>
