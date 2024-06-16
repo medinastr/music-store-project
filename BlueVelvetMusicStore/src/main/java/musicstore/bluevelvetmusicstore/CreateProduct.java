@@ -30,7 +30,7 @@ public class CreateProduct extends Product {
 
             // Executa a declaração SQL para inserir o produto no banco de dados
             int rowsAffected = statement.executeUpdate();
-
+            
             // Verifica se a inserção foi bem-sucedida
             if (rowsAffected > 0) {
                 System.out.println("Produto adicionado com sucesso ao banco de dados.");

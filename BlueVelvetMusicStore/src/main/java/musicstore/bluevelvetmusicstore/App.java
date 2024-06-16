@@ -4,10 +4,11 @@ import java.util.concurrent.ExecutionException;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        Product product = new Product("Guitar", "You can play many guitar songs",
-                "Rozini", "Instrument", 1200.00, 1399.90);
+        Product product = new Product(" Microphone", "Professional condenser microphone",
+                "Shure", "Accessory", 200.00, 150.00);
 
         UserDAO user = new UserDAO();
         user.createProduct(product);
+        System.out.println(product.getProductName());
     }
 }
