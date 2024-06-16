@@ -9,6 +9,6 @@ public class App {
 
         UserDAO user = new UserDAO();
         user.createProduct(product);
-        System.out.println(product.getProductName());
+        user.deleteProduct("Acoustic Guitar");
     }
 }

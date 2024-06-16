@@ -40,4 +40,33 @@ public class UserDAO {
             }
         }
     }
+
+    public void deleteProduct(String productName) throws SQLException {
+        String sql = "DELETE FROM PRODUCTS WHERE productName = ?";
+
+        Connection connection = DatabaseConnection.getConnection();
+        PreparedStatement ps = null;
+
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, productName);
+
+            int rowsAffected = ps.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Produto removido com sucesso do banco de dados.");
+            } else {
+                System.out.println("Falha ao remover o produto do banco de dados.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (ps != null) {
+                ps.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+    }
 }
