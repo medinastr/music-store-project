@@ -1,14 +1,22 @@
 package musicstore.bluevelvetmusicstore;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import java.sql.Connection;
-import java.sql.SQLException;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 
-public class HelloController {
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ResourceBundle;
+
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+public class HelloController implements Initializable {
+    private Label label;
     @FXML
     private TextField tfproductName;
     @FXML
@@ -22,17 +30,30 @@ public class HelloController {
     @FXML
     private TextField tfcost;
     @FXML
-    private TableView<?> tablesviewBooks;
+    private TableView<Product> tvProducts;
     @FXML
     private Button btnInsert;
     @FXML
     private Button btnUpdate;
     @FXML
     private Button btnDelete;
-
     @FXML
-    public void initialize() {
-        // Adicione a lógica de inicialização aqui
+    private TableColumn<Product, String> colName;
+    @FXML
+    private TableColumn<Product, String> colDescription;
+    @FXML
+    private TableColumn<Product, String> colBrand;
+    @FXML
+    private TableColumn<Product, String> colCategory;
+    @FXML
+    private TableColumn<Product, Double> colListPrice;
+    @FXML
+    private TableColumn<Product, Double> colCost;
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        showProducts();
     }
 
     @FXML
@@ -48,5 +69,40 @@ public class HelloController {
     @FXML
     private void handleDelete() {
         // Adicione a lógica para o botão Excluir
+    }
+
+    public ObservableList<Product> getProductsList() {
+        ObservableList<Product> productsList = FXCollections.observableArrayList();
+        String str = "SELECT * FROM PRODUCTS";
+        Statement st;
+        ResultSet rs;
+        Connection connection = DatabaseConnection.getConnection();
+
+        try {
+            st = connection.createStatement();
+            rs = st.executeQuery(str);
+            Product product;
+            while(rs.next()) {
+                product = new Product(rs.getString("productName"), rs.getString("description"), rs.getString("brand"),
+                        rs.getString("category"), rs.getDouble("listPrice"), rs.getDouble("cost"));
+                productsList.add(product);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return productsList;
+    }
+
+    public void showProducts() {
+        ObservableList<Product> productsList = getProductsList();
+
+        colName.setCellValueFactory(new PropertyValueFactory<Product, String>("productName"));
+        colDescription.setCellValueFactory(new PropertyValueFactory<Product, String>("description"));
+        colBrand.setCellValueFactory(new PropertyValueFactory<Product, String>("brand"));
+        colCategory.setCellValueFactory(new PropertyValueFactory<Product, String>("category"));
+        colListPrice.setCellValueFactory(new PropertyValueFactory<Product, Double>("listPrice"));
+        colCost.setCellValueFactory(new PropertyValueFactory<Product, Double>("cost"));
+
+        tvProducts.setItems(productsList);
     }
 }

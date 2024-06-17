@@ -11,6 +11,8 @@ module musicstore.bluevelvetmusicstore {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires java.sql;
+    requires mysql.connector.java;
+    requires com.fasterxml.jackson.databind;
 
     opens musicstore.bluevelvetmusicstore to javafx.fxml;
     exports musicstore.bluevelvetmusicstore;
