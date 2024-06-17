@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
@@ -57,8 +58,15 @@ public class HelloController implements Initializable {
     }
 
     @FXML
-    private void handleInsert() {
-        // Adicione a lógica para o botão Inserir
+    private void createButton() throws SQLException {
+        double listPrice = Double.parseDouble(tflistPrice.getText());
+        double cost = Double.parseDouble(tfcost.getText());
+        Product product = new Product(tfproductName.getText(), tfdescription.getText(),
+                tfbrand.getText(), tfcategory.getText(), listPrice, cost);
+
+        UserDAO user = new UserDAO();
+        user.createProduct(product);
+        showProducts(); // update the table for the new item on database
     }
 
     @FXML
@@ -67,8 +75,12 @@ public class HelloController implements Initializable {
     }
 
     @FXML
-    private void handleDelete() {
-        // Adicione a lógica para o botão Excluir
+    private void deleteButton() throws SQLException {
+        String temp = tfproductName.getText();
+
+        UserDAO user = new UserDAO();
+        user.deleteProduct(temp);
+        showProducts();
     }
 
     public ObservableList<Product> getProductsList() {
