@@ -70,15 +70,23 @@ public class UserDAO {
         }
     }
 
-    public void updateProduct(Product product) throws SQLException {
-        String sql = "UPDATE PRODUCTS SET ? = ? WHERE productName = ?";
+    public void updateProduct(String productName, String description, String brand, String category,
+                              double listPrice, double cost) throws SQLException {
+        String sql = "UPDATE PRODUCTS SET productName = ?, description = ?, brand = ?, category = ?, " +
+                "listPrice = ?, cost = ? WHERE productName = ?";
 
         Connection connection = DatabaseConnection.getConnection();
         PreparedStatement ps = null;
 
         try {
             ps = connection.prepareStatement(sql);
-            ps.setString(1, product.getProductName());
+            ps.setString(1, productName);
+            ps.setString(2, description);
+            ps.setString(3, brand);
+            ps.setString(4, category);
+            ps.setDouble(5, listPrice);
+            ps.setDouble(6, cost);
+            ps.setString(7, productName);
 
             int rowsAffected = ps.executeUpdate();
 

@@ -21,8 +21,8 @@ public class App extends Application {
     public static void main(String[] args) throws Exception {
         launch(args);
 
-//        Product product = new Product(" Microphone", "Professional condenser microphone",
-//                "Shure", "Accessory", 200.00, 150.00);
+//        Product product = new Product("Guitar Model X", "An excellent eletric guitar for begginers",
+//                "Fender", "Instrument", 999.90, 550.00);
 //
 //        UserDAO user = new UserDAO();
 //        user.createProduct(product);

@@ -2,6 +2,7 @@ package musicstore.bluevelvetmusicstore;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -58,6 +59,17 @@ public class HelloController implements Initializable {
     }
 
     @FXML
+    private void handleButtonAction(ActionEvent event) throws SQLException {
+        if(event.getSource() == btnInsert) {
+            createButton();
+        } else if (event.getSource() == btnDelete) {
+            deleteButton();
+        } else if(event.getSource() == btnUpdate) {
+            updateButton();
+        }
+    }
+
+    @FXML
     private void createButton() throws SQLException {
         double listPrice = Double.parseDouble(tflistPrice.getText());
         double cost = Double.parseDouble(tfcost.getText());
@@ -70,8 +82,14 @@ public class HelloController implements Initializable {
     }
 
     @FXML
-    private void handleUpdate() {
-        // Adicione a lógica para o botão Atualizar
+    private void updateButton() throws SQLException {
+        double listPrice = Double.parseDouble(tflistPrice.getText());
+        double cost = Double.parseDouble(tfcost.getText());
+
+        UserDAO user = new UserDAO();
+        user.updateProduct(tfproductName.getText(), tfdescription.getText(), tfbrand.getText(),
+                tfcategory.getText(), listPrice, cost);
+        showProducts();
     }
 
     @FXML
