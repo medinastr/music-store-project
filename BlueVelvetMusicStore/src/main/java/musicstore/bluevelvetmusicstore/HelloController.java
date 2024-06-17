@@ -8,10 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 import javafx.scene.control.*;
@@ -103,10 +100,10 @@ public class HelloController implements Initializable {
 
     public ObservableList<Product> getProductsList() {
         ObservableList<Product> productsList = FXCollections.observableArrayList();
+        Connection connection = DatabaseConnection.getConnection();
         String str = "SELECT * FROM PRODUCTS";
         Statement st;
         ResultSet rs;
-        Connection connection = DatabaseConnection.getConnection();
 
         try {
             st = connection.createStatement();
