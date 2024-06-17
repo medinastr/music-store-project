@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="713.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="713.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="musicstore.bluevelvetmusicstore.HelloController">
    <children>
       <VBox layoutX="14.0" layoutY="23.0" prefHeight="180.0" prefWidth="82.0" spacing="15.0">
          <children>
@@ -40,8 +40,8 @@
             <TableColumn fx:id="colCost" prefWidth="55.0" text="Cost" />
         </columns>
       </TableView>
-      <Button fx:id="btnInsert" layoutX="34.0" layoutY="257.0" mnemonicParsing="false" text="Create" />
-      <Button fx:id="btnUpdate" layoutX="112.0" layoutY="257.0" mnemonicParsing="false" text="Update" />
-      <Button fx:id="btnDelete" layoutX="196.0" layoutY="257.0" mnemonicParsing="false" text="Delete" />
+      <Button fx:id="btnInsert" layoutX="34.0" layoutY="257.0" mnemonicParsing="false" text="Create" onAction="#createButton"/>
+      <Button fx:id="btnUpdate" layoutX="112.0" layoutY="257.0" mnemonicParsing="false" text="Update" onAction="#updateButton"/>
+      <Button fx:id="btnDelete" layoutX="196.0" layoutY="257.0" mnemonicParsing="false" text="Delete" onAction="#deleteButton"/>
    </children>
 </AnchorPane>
