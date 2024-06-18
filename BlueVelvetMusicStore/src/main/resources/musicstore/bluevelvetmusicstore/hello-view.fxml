@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="713.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="musicstore.bluevelvetmusicstore.HelloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="944.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="musicstore.bluevelvetmusicstore.HelloController">
    <children>
       <VBox layoutX="14.0" layoutY="23.0" prefHeight="180.0" prefWidth="82.0" spacing="15.0">
          <children>
@@ -20,7 +20,7 @@
             <Label lineSpacing="1.0" text="Cost" />
          </children>
       </VBox>
-      <VBox layoutX="96.0" layoutY="23.0" prefHeight="174.0" prefWidth="185.0" spacing="6.0">
+      <VBox layoutX="96.0" layoutY="23.0" prefHeight="205.0" prefWidth="229.0" spacing="6.0">
          <children>
             <TextField fx:id="tfproductName" />
             <TextField fx:id="tfdescription" />
@@ -30,18 +30,18 @@
             <TextField fx:id="tfcost" />
          </children>
       </VBox>
-      <TableView fx:id="tvProducts" layoutX="287.0" layoutY="23.0" prefHeight="258.0" prefWidth="418.0">
+      <TableView fx:id="tvProducts" layoutX="339.0" layoutY="23.0" prefHeight="354.0" prefWidth="595.0">
         <columns>
-          <TableColumn fx:id="colName" prefWidth="62.0" text="Name" />
-          <TableColumn fx:id="colDescription" prefWidth="98.0" text="Description" />
-            <TableColumn fx:id="colBrand" prefWidth="61.0" text="Brand" />
-            <TableColumn fx:id="colCategory" prefWidth="71.0" text="Category" />
-            <TableColumn fx:id="colListPrice" prefWidth="73.0" text="List price" />
-            <TableColumn fx:id="colCost" prefWidth="55.0" text="Cost" />
+          <TableColumn fx:id="colName" text="Name" />
+          <TableColumn fx:id="colDescription" prefWidth="154.0" text="Description" />
+            <TableColumn fx:id="colBrand" prefWidth="98.0" text="Brand" />
+            <TableColumn fx:id="colCategory" prefWidth="99.0" text="Category" />
+            <TableColumn fx:id="colListPrice" prefWidth="86.0" text="List price" />
+            <TableColumn fx:id="colCost" prefWidth="77.0" text="Cost" />
         </columns>
       </TableView>
-      <Button fx:id="btnInsert" layoutX="34.0" layoutY="257.0" mnemonicParsing="false" text="Create" onAction="#createButton"/>
-      <Button fx:id="btnUpdate" layoutX="112.0" layoutY="257.0" mnemonicParsing="false" text="Update" onAction="#updateButton"/>
-      <Button fx:id="btnDelete" layoutX="196.0" layoutY="257.0" mnemonicParsing="false" text="Delete" onAction="#deleteButton"/>
+      <Button fx:id="btnInsert" layoutX="34.0" layoutY="281.0" mnemonicParsing="false" onAction="#createButton" text="Create" />
+      <Button fx:id="btnUpdate" layoutX="112.0" layoutY="281.0" mnemonicParsing="false" onAction="#updateButton" text="Update" />
+      <Button fx:id="btnDelete" layoutX="195.0" layoutY="281.0" mnemonicParsing="false" onAction="#deleteButton" text="Delete" />
    </children>
 </AnchorPane>
